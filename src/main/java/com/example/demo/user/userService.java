@@ -23,5 +23,6 @@ public class userService {
 	public void addUser(userDetails userdetails) {
 		repo.save(userdetails);
 	}
+	public void
 
 }
