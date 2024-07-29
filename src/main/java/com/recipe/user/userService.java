@@ -1,4 +1,4 @@
-package com.example.demo.user;
+package com.recipe.user;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,8 +23,6 @@ public class userService {
 	public void addUser(userDetails userdetails) {
 		repo.save(userdetails);
 	}
-	public void deleteUser(Integer id) {
-		repo.deleteById(id);
-	}
+	
 
 }

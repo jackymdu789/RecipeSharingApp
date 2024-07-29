@@ -1,8 +1,11 @@
-package com.example.demo.user;
+package com.recipe.user;
+import com.recipe.recipes.Recipe;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class userDetails{
@@ -12,7 +15,8 @@ Integer user_id;
 String user_name;
 String user_email;
 String user_password;
-Integer recipe_id;
+@OneToMany
+Recipe recipe;
 
 public userDetails() {
 	super();
@@ -24,7 +28,7 @@ public userDetails(Integer user_id, String user_name, String user_email, String 
 	this.user_name = user_name;
 	this.user_email = user_email;
 	this.user_password = user_password;
-	this.recipe_id = recipe_id;
+	this.recipe = new Recipe(recipe_id);
 }
 
 public Integer getUser_id() {
@@ -51,11 +55,11 @@ public String getUser_password() {
 public void setUser_password(String user_password) {
 	this.user_password = user_password;
 }
-public Integer getRecipe_id() {
-	return recipe_id;
+public Recipe getRecipe_id() {
+	return recipe;
 }
-public void setRecipe_id(Integer recipe_id) {
-	this.recipe_id = recipe_id;
+public Recipe setRecipe_id(Integer recipe_id) {
+	return this.recipe = recipe;
 }
 
 }

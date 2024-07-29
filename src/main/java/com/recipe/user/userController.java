@@ -1,4 +1,4 @@
-package com.example.demo.user;
+package com.recipe.user;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,9 +39,5 @@ public class userController {
 	public void updateUser(@PathVariable Integer id, @RequestBody userDetails userdetails) {
 		service.updateUser(userdetails);
 	}
-
-	@DeleteMapping("/user/{id}")
-	public void deleteUser(Integer id) {
-		service.deleteUser(id);
-	}
+	
 }

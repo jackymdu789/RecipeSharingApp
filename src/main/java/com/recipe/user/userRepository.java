@@ -1,4 +1,4 @@
-package com.example.demo.user;
+package com.recipe.user;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface userRepository extends CrudRepository<userDetails, Integer> {
 
-	Optional<userDetails> findById(Integer user_id);
+//	Optional<userDetails> findById(Integer user_id);
 
 }
