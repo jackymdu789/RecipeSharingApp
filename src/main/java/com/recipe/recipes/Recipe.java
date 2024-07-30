@@ -18,33 +18,30 @@ public class Recipe {
 	private List <String> ingredents;
 	String steps;
 	Integer serves;
-	Integer category_id;
 	Integer duration;
 	@OneToOne
     @JoinColumn(name = "categoryId")
-	Category cat;
+	Category category;
 	public Recipe() {
 		
 	}
 	
-	public Category getCat() {
-		return cat;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setCat(Category cat) {
-		this.cat = cat;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
-	public Recipe(Integer recipe_id, String recipe_name, List<String> ingredents, String steps, Integer serves,
-			Integer category_id, Integer duration, Category cat) {
+	public Recipe(Integer recipe_id, String recipe_name, List<String> ingredents, String steps, Integer serves, Integer duration, Category category) {
 		super();
 		this.recipe_id = recipe_id;
 		this.recipe_name = recipe_name;
 		this.ingredents = ingredents;
 		this.steps = steps;
 		this.serves = serves;
-		this.category_id = category_id;
 		this.duration = duration;
-		this.cat = cat;
+		this.category = category;
 	}
 	public Recipe(Integer recipe_id) {
 		this.recipe_id = recipe_id;
@@ -79,12 +76,6 @@ public class Recipe {
 	public void setServes(Integer serves) {
 		this.serves = serves;
 	}
-	public Integer getCategory_id() {
-		return category_id;
-	}
-	public void setCategory_id(Integer category_id) {
-		this.category_id = category_id;
-	}
 	public Integer getDuration() {
 		return duration;
 	}
@@ -95,8 +86,8 @@ public class Recipe {
 	@Override
 	public String toString() {
 		return "Recipe [recipe_id=" + recipe_id + ", recipe_name=" + recipe_name + ", ingredents=" + ingredents
-				+ ", steps=" + steps + ", serves=" + serves + ", category_id=" + category_id + ", duration=" + duration
-				+ ", cat=" + cat + "]";
+				+ ", steps=" + steps + ", serves=" + serves + ", duration=" + duration
+				+ ", cat=" + category + "]";
 	}	
 	
 }

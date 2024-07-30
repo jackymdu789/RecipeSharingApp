@@ -19,21 +19,21 @@ public class CategoryController {
 	@Autowired
 	CategoryService service;
 
-	@GetMapping("/")
+	@GetMapping("/category")
 	public List<Category> findAllCategory() {
 		return service.findAllCategory();
 	}
 
-	@GetMapping("/{category_id}")
+	@GetMapping("/category/{category_id}")
 	public Optional<Category> findAllById(@PathVariable Integer categoryId) {
 		return service.findCategoryById(categoryId);
 	}
 	
-	@PostMapping("/")
+	@PostMapping("/category")
 	public void  addCategory(@RequestBody Category details) {
 		service.addCategory(details);
 	}
-	@PutMapping("/{category_id}")
+	@PutMapping("/category/{category_id}")
 	public void updateCategory(@PathVariable Integer category_id,@RequestBody Category details) {
 		service.updateCategory(category_id ,details);
 	}

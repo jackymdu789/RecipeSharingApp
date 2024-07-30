@@ -18,7 +18,7 @@ String categoryName;
 public Category() {
 	super();
 }
-public Category(Integer category_id, String category_name) {
+public Category(Integer categoryId, String categoryName) {
 	super();
 	this.categoryId = categoryId;
 	this.categoryName = categoryName;
