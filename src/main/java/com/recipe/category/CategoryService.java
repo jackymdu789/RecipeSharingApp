@@ -1,4 +1,4 @@
-package com.example.demo.category;
+package com.recipe.category;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.recipe.user.userDetails;
+import com.recipe.user.User;
 
 @Service
 public class CategoryService {

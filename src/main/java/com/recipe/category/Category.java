@@ -1,4 +1,4 @@
-package com.example.demo.category;
+package com.recipe.category;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +10,10 @@ public class Category {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 Integer categoryId;
+
 String categoryName;
+
+
 
 public Category() {
 	super();

@@ -7,8 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface userRepository extends CrudRepository<userDetails, Integer> {
-
-//	Optional<userDetails> findById(Integer user_id);
+public interface UserRepository extends CrudRepository<User, Integer> {
 
 }

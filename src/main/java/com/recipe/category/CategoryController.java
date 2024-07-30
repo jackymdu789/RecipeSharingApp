@@ -1,4 +1,4 @@
-package com.example.demo.category;
+package com.recipe.category;
 
 import java.lang.StackWalker.Option;
 import java.util.List;

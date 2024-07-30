@@ -1,4 +1,4 @@
-package com.example.demo.category;
+package com.recipe.category;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,39 +1,50 @@
 package com.recipe.recipes;
 
+import java.util.List;
+import com.recipe.category.*;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Recipe {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	Integer recipe_id;
 	String recipe_name;
-	String Ingredents;
-	String procedure;
+	private List <String> ingredents;
+	String steps;
 	Integer serves;
 	Integer category_id;
 	Integer duration;
-	
+	@OneToOne
+    @JoinColumn(name = "categoryId")
+	Category cat;
 	public Recipe() {
 		
 	}
 	
-	@Override
-	public String toString() {
-		return "Recipe [recipe_id=" + recipe_id + ", recipe_name=" + recipe_name + ", Ingredents=" + Ingredents
-				+ ", procedure=" + procedure + ", serves=" + serves + ", category_id=" + category_id + ", duration="
-				+ duration + "]";
+	public Category getCat() {
+		return cat;
 	}
-	public Recipe(Integer recipe_id, String recipe_name, String ingredents, String procedure, Integer serves,
-			Integer category_id, Integer duration) {
+
+	public void setCat(Category cat) {
+		this.cat = cat;
+	}
+	public Recipe(Integer recipe_id, String recipe_name, List<String> ingredents, String steps, Integer serves,
+			Integer category_id, Integer duration, Category cat) {
 		super();
 		this.recipe_id = recipe_id;
 		this.recipe_name = recipe_name;
-		this.Ingredents = ingredents;
-		this.procedure = procedure;
+		this.ingredents = ingredents;
+		this.steps = steps;
 		this.serves = serves;
 		this.category_id = category_id;
 		this.duration = duration;
+		this.cat = cat;
 	}
 	public Recipe(Integer recipe_id) {
 		this.recipe_id = recipe_id;
@@ -50,17 +61,17 @@ public class Recipe {
 	public void setRecipe_name(String recipe_name) {
 		this.recipe_name = recipe_name;
 	}
-	public String getIngredents() {
-		return Ingredents;
+	public List<String> getIngredents() {
+		return ingredents;
 	}
-	public void setIngredents(String ingredents) {
-		Ingredents = ingredents;
+	public void setIngredents(List<String> ingredents) {
+		this.ingredents = ingredents;
 	}
-	public String getProcedure() {
-		return procedure;
+	public String getSteps() {
+		return steps;
 	}
-	public void setProcedure(String procedure) {
-		this.procedure = procedure;
+	public void setSteps(String steps) {
+		this.steps = steps;
 	}
 	public Integer getServes() {
 		return serves;
@@ -80,6 +91,12 @@ public class Recipe {
 	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Recipe [recipe_id=" + recipe_id + ", recipe_name=" + recipe_name + ", ingredents=" + ingredents
+				+ ", steps=" + steps + ", serves=" + serves + ", category_id=" + category_id + ", duration=" + duration
+				+ ", cat=" + cat + "]";
+	}	
 	
 }
