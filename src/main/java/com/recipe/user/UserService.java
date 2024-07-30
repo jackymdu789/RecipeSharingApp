@@ -1,28 +1,25 @@
 package com.recipe.user;
-
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 @Service
-public class userService {
+public class UserService {
 	@Autowired
-	private userRepository repo;
+	private UserRepository repo;
 
-	List<userDetails> findAllUser() {
-		return (List<userDetails>) repo.findAll();
+	List<User> findAllUser() {
+		return (List<User>) repo.findAll();
 	}
-	Optional <userDetails> getUserById(Integer user_id) {
+	Optional <User> getUserById(Integer user_id) {
 		return repo.findById(user_id);
 	}
-	public void updateUser(userDetails userdetails) {
+	public void updateUser(User userdetails) {
 		repo.save(userdetails);
 	}
-	public void addUser(userDetails userdetails) {
+	public void addUser(User userdetails) {
 		repo.save(userdetails);
 	}
 	
-
+	
 }
