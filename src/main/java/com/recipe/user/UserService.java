@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 @Service
 public class UserService {
 	@Autowired
@@ -20,6 +21,9 @@ public class UserService {
 	public void addUser(User userdetails) {
 		repo.save(userdetails);
 	}
+	 public User findByUsername(String userName) {
+	        return repo.findByUserName(userName);
+	    }
 	
 	
 }
