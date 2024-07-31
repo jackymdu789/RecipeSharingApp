@@ -13,8 +13,8 @@ import jakarta.persistence.OneToOne;
 public class Recipe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Integer recipe_id;
-	String recipe_name;
+	Integer recipeId;
+	String recipeName;
 	private List <String> ingredents;
 	String steps;
 	Integer serves;
@@ -33,30 +33,30 @@ public class Recipe {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	public Recipe(Integer recipe_id, String recipe_name, List<String> ingredents, String steps, Integer serves, Integer duration, Category category) {
+	public Recipe(Integer recipeId, String recipeName, List<String> ingredents, String steps, Integer serves, Integer duration, Category category) {
 		super();
-		this.recipe_id = recipe_id;
-		this.recipe_name = recipe_name;
+		this.recipeId = recipeId;
+		this.recipeName = recipeName;
 		this.ingredents = ingredents;
 		this.steps = steps;
 		this.serves = serves;
 		this.duration = duration;
 		this.category = category;
 	}
-	public Recipe(Integer recipe_id) {
-		this.recipe_id = recipe_id;
+	public Recipe(Integer recipeId) {
+		this.recipeId = recipeId;
 	}
-	public Integer getRecipe_id() {
-		return recipe_id;
+	public Integer getrecipeId() {
+		return recipeId;
 	}
-	public void setRecipe_id(Integer recipe_id) {
-		this.recipe_id = recipe_id;
+	public void setRecipe_id(Integer recipeId) {
+		this.recipeId = recipeId;
 	}
-	public String getRecipe_name() {
-		return recipe_name;
+	public String getrecipeName() {
+		return recipeName;
 	}
-	public void setRecipe_name(String recipe_name) {
-		this.recipe_name = recipe_name;
+	public void setRecipe_name(String recipeName) {
+		this.recipeName = recipeName;
 	}
 	public List<String> getIngredents() {
 		return ingredents;
@@ -85,7 +85,7 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		return "Recipe [recipe_id=" + recipe_id + ", recipe_name=" + recipe_name + ", ingredents=" + ingredents
+		return "Recipe [recipe_id=" + recipeId + ", recipe_name=" + recipeName + ", ingredents=" + ingredents
 				+ ", steps=" + steps + ", serves=" + serves + ", duration=" + duration
 				+ ", cat=" + category + "]";
 	}	

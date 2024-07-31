@@ -20,20 +20,23 @@ public class RecipeController {
 	Iterable<Recipe> getAllRecipe() {
 		return service.getAllRecipe();
 	}
-@GetMapping("/recipe/{id}")
+
+	@GetMapping("/recipe/{id}")
 	Optional<Recipe> getRecipeById(@PathVariable Integer id) {
 		return service.getRecipeById(id);
 	}
-@PostMapping("/recipe")
+
+	@PostMapping("/recipe")
 	Recipe addRecipeById(@RequestBody Recipe recipe) {
 		return service.addRecipeById(recipe);
 	}
-@DeleteMapping("/recipe/{id}")
+
+	@DeleteMapping("/recipe/{id}")
 	void deleteRecipeById(@PathVariable Integer id) {
 		service.deleteRecipeById(id);
 	}
-@GetMapping("/{ingredents}")
-void searchByIngredents(@PathVariable List<String> ingredents) {
-	service.searchByIngredents(ingredents);
-}
+//@GetMapping("/{ingredents}")
+//void searchByIngredents(@PathVariable List<String> ingredents) {
+//	service.searchByIngredents(ingredents);
+//}
 }
