@@ -6,8 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.recipe.user.User;
-
 @Service
 public class CategoryService {
 	@Autowired
@@ -17,7 +15,7 @@ public class CategoryService {
 		return (List<Category>) repo.findAll();
 	}
 
-	Optional<Category> findCategoryById(Integer categoryId) {
+	public Optional<Category> findCategoryById(Integer categoryId) {
 		return repo.findById(categoryId);
 	}
 
@@ -28,4 +26,6 @@ public class CategoryService {
 	void updateCategory(Integer id,Category details) {
 		repo.save(details);
 	}
+	
+	
 }

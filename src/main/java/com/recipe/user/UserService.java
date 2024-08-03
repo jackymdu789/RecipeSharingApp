@@ -1,9 +1,11 @@
 package com.recipe.user;
+
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
+
 @Service
 public class UserService {
 	@Autowired
@@ -12,18 +14,28 @@ public class UserService {
 	List<User> findAllUser() {
 		return (List<User>) repo.findAll();
 	}
-	Optional <User> getUserById(Integer user_id) {
+
+	Optional<User> getUserById(Integer user_id) {
 		return repo.findById(user_id);
 	}
-	public void updateUser(User userdetails) {
-		repo.save(userdetails);
+//	public void updateUser(Integer id, User userdetails) {
+//		repo.save(userdetails);
+//	}
+
+	public Optional<User> updateUser(Integer id, User user) {
+		if (repo.existsById(id)) {
+			user.setUserId(id);
+			return Optional.of(repo.save(user));
+		}
+		return Optional.empty();
 	}
-	public void addUser(User userdetails) {
-		repo.save(userdetails);
+
+	public Integer addUser(User userdetails) {
+		return repo.save(userdetails).userId;
 	}
-	 public User findByUsername(String userName) {
-	        return repo.findByUserName(userName);
-	    }
-	
-	
+
+	public User findByUsername(String userName) {
+		return repo.findByUserName(userName);
+	}
+
 }

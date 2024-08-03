@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
 public class RecipeService {
 	@Autowired
 	RecipeRepository repo;
-	Recipe r;
 
-	Iterable<Recipe> getAllRecipe() {
-		return repo.findAll();
+	List<Recipe> getAllRecipe() {
+		return (List<Recipe>) repo.findAll();
 	}
 
 	Optional<Recipe> getRecipeById(Integer id) {
 		return repo.findById(id);
 	}
 
-	Recipe addRecipeById(Recipe recipe) {
+	public Recipe addRecipe(Recipe recipe) {
+		// return repo.save(recipe).recipeId;
 		return repo.save(recipe);
 	}
 
@@ -28,9 +28,12 @@ public class RecipeService {
 		repo.deleteById(id);
 	}
 
-//	void searchByIngredents(List<String> ingredents) {
-//		if (r.getIngredents().equals(ingredents))
-//		repo.findById(r.getRecipe_id());
-//	}
+	public List<Recipe> getRecipesByCategory(Integer categoryId) {
+		return repo.findByCategoryCategoryId(categoryId);
+	}
 
+	public List<Recipe> findRecipesByIngredient(String ingredients) {
+//        List<String> ingredientsList = Arrays.asList(ingredients.split(","));
+		return repo.searchRecipeByIngredients(ingredients);
+	}
 }
