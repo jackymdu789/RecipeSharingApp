@@ -10,10 +10,7 @@ public class Category {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 Integer categoryId;
-
 String categoryName;
-
-
 
 public Category() {
 	super();
@@ -23,21 +20,22 @@ public Category(Integer categoryId, String categoryName) {
 	this.categoryId = categoryId;
 	this.categoryName = categoryName;
 }
-public Integer getCategory_id() {
+
+public Integer getCategoryId() {
 	return categoryId;
 }
-public void setCategory_id(Integer category_id) {
-	this.categoryId = category_id;
+public void setCategoryId(Integer categoryId) {
+	this.categoryId = categoryId;
 }
-public String getCategory_name() {
+public String getCategoryName() {
 	return categoryName;
 }
-public void setCategory_name(String category_name) {
-	this.categoryName = category_name;
+public void setCategoryName(String categoryName) {
+	this.categoryName = categoryName;
 }
 @Override
 public String toString() {
-	return "categoryDetails [category_id=" + categoryId + ", category_name=" + categoryName + "]";
+	return "categoryDetails [categoryId=" + categoryId + ", categoryName=" + categoryName + "]";
 }
 
 }

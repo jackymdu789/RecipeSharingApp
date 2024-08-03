@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+
 @Entity
 public class User {
 	@Id
@@ -27,10 +28,6 @@ public class User {
 		super();
 	}
 
-	public User(String userName) {
-		this.userName = userName;
-	}
-
 	public User(Integer userId, String userName, String userEmail, String userPassword, List<Recipe> recipes) {
 		super();
 		this.userId = userId;
@@ -38,6 +35,10 @@ public class User {
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
 		this.recipes = recipes;
+	}
+
+	public User(String userName) {
+		this.userName = userName;
 	}
 
 	public Integer getUserId() {
@@ -77,12 +78,13 @@ public class User {
 	}
 
 	public void setRecipes(List<Recipe> recipes) {
-		this.recipes = (List<Recipe>) recipes;
+		this.recipes = recipes;
 	}
 
 	@Override
 	public String toString() {
-		return "userDetails [userId=" + userId + ", userName=" + userName + ", userEmail=" + userEmail
-				+ ", userPassword=" + userPassword + ", recipe=" + recipes + "]";
+		return "User [userId=" + userId + ", userName=" + userName + ", userEmail=" + userEmail + ", userPassword="
+				+ userPassword + ", recipes=" + recipes + "]";
 	}
+
 }
