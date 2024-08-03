@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const userName = document.getElementById('username').value;
         const userEmail = document.getElementById('email').value;
         const userPassword = document.getElementById('password').value;
-    
+
         try {
             const response = await fetch('http://localhost:8090/user', {
                 method: 'POST',
@@ -21,21 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // Check if the response is ok
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
+            }else{
+                sessionStorage.setItem("userId", await response.text())
             }
-    
-            // Check if the response has content
-            // const text = await response.text();
-            // if (!text) {
-            //     throw new Error('Response body is empty.');
-            // }
-    
-            // Parse JSON only if response text is available
-            // const data = JSON.parse(text);
-            // userId = data.id;
-            // console.log(data);
-            // document.getElementById('login-form').style.display = 'none';
-            // document.getElementById('recipe-form').style.display = 'block';
-            // fetchRecipes();
             window.location.href = "recipe.html";
         } catch (error) {
             console.error('Error:', error);
