@@ -38,4 +38,14 @@ public class UserService {
 		return repo.findByUserName(userName);
 	}
 
+	public Optional<User> findByUserEmail(String userEmail) {
+		return repo.findByUserEmail(userEmail);
+	}
+
+	public User addNewUser(String userName,String userEmail, String userPassword) {
+		User newUser = new User(userName, userEmail, userPassword);
+		return repo.save(newUser);
+		
+	}
+
 }

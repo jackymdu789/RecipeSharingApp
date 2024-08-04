@@ -36,6 +36,13 @@ public class User {
 		this.userPassword = userPassword;
 		this.recipes = recipes;
 	}
+	
+	public User( String userName, String userEmail, String userPassword) {
+		super();
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.userPassword = userPassword;
+	}
 
 	public User(String userName) {
 		this.userName = userName;

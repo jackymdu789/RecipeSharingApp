@@ -1,0 +1,78 @@
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>recipe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="recipe-form" >
+    <h2>Create Recipe</h2>
+    <form id="create-recipe">
+        <input type="text" id="recipe-name" placeholder="Recipe Name">
+        <textarea id="recipe-description" placeholder="Recipe Description"></textarea>
+        <textarea id="recipe-ingredients" placeholder="Add Ingredients"></textarea>
+        
+        <ul>
+        </ul>
+        <button type="submit">Create</button>
+    </form>
+</div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Recipe</title>
+    <link rel="stylesheet" href="styleforrecipe.css">
+</head>
+<body>
+<div id="recipe-form">
+    <h2>Create Recipe</h2>
+    <form id="create-recipe">
+        <input type="text" id="recipe-name" placeholder="Recipe Name" required>
+        <label for="ingredients"></label>
+        <input type="text" id="ingredients" name="ingredients" placeholder="Ingredients (comma-separated)" required>
+        
+        <textarea id="recipe-steps" placeholder="Recipe Steps" required></textarea>
+        <input type="number" id="recipe-serves" placeholder="Recipe Serves" required>
+        <input type="number" id="recipe-duration" placeholder="Recipe Duration" required>
+        <label for="category">Category:</label>
+        <select id="category" required>
+            <option value="1">Snacks</option>
+            <option value="2">Desserts</option>
+            <option value="3">Drinks</option>
+            <option value="4">Breakfast</option>
+            <option value="5">Lunch</option>
+            <option value="6">Dinner</option>
+        </select>
+        <br>
+        <div>
+            <label for="Recipe-Status">Recipe Status    :  </label>
+            <select id="status" >
+                <option value="1">PUBLIC</option>
+                <option value="2">PRIVATE</option>
+            </select>
+        </div>
+        <br>
+
+        <div class="upload-container">
+            <p>Upload an Image or Video of your recipe <small>(Not mandatory)</small></p>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" id="fileInput" name="file" accept="image/*,video/*">
+            </form>
+        </div>
+
+        <button type="submit">Create</button>
+    </form>
+        
+</div>
+<script src="scriptforrecipe.js"></script>
+</body>
+</html>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.recipe.category.Category;
 import com.recipe.category.CategoryService;
+import com.recipe.user.User;
 
 @RestController
 @CrossOrigin("http://127.0.0.1:5500")
@@ -27,7 +28,12 @@ public class RecipeController {
 
 	@GetMapping("/recipe")
 	List<Recipe> getAllRecipe() {
-		return service.getAllRecipe();
+		return service.getUserRecipesWithPublic();
+	}
+	
+	@GetMapping("/private/recipe/{user}")
+	List<Recipe> getAllPrivateRecipe(@PathVariable User user) {
+		return service.getUserRecipesWithPrivacy(user);
 	}
 
 	@GetMapping("/recipe/{id}")
@@ -62,7 +68,7 @@ public class RecipeController {
 		return ResponseEntity.ok(createdRecipe);
 	}
 
-	@GetMapping("/recipe/search")
+	@GetMapping("/recipe/search/{ingredients}")
 	public List<Recipe> findRecipesByIngredient(@RequestParam("ingredients") String ingredients) {
 
 		return service.findRecipesByIngredient(ingredients);
