@@ -1,73 +1,107 @@
-/* Basic styles for the page */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9; /* Light background color for better contrast */
-}
-
-/* Main content styling */
-.content {
+    width: 80%;
+    margin: 0 auto;
     padding: 20px;
-    text-align: center; /* Center align the text */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* General button styles */
-.button {
-    position: fixed;
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+}
+
+.category-dropdown, .search-input {
+    margin-right: 10px;
+    padding: 5px;
+    border: 1px solid #ddd;
     border-radius: 5px;
+}
+
+.search-input {
+    width: 300px;
+}
+
+.recipe-button, .add-recipe-button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #ff9800;
     color: white;
     text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s, transform 0.3s;
+    border-radius: 5px;
 }
 
-/* Recipe button styles (top-left corner) */
-.recipe-button {
-    top: 20px;
-    left: 20px;
-    background-color: #28a745; /* Green background */
+.recipe-button:hover, .add-recipe-button:hover {
+    background-color: #e68900;
 }
 
-.recipe-button:hover {
-    background-color: #218838; /* Darker green on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
+.content {
+    padding: 20px;
 }
 
-/* Add Recipe button styles (top-right corner) */
-.add-recipe-button {
-    top: 20px;
-    right: 20px;
-    background-color: #007bff; /* Blue background */
+.section-title {
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-.add-recipe-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
+.recipe-list {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.grid-container{
+.recipe-item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: calc(33% - 20px);
+}
+
+.recipe-item h3 {
+    margin-top: 0;
+}
+
+.recipe-item p {
+    margin: 10px 0;
+}
+
+.grid-container {
     display: grid;
-    overflow: hidden;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
-    gap: 10px; 
-    padding: 10px;
-    align-items: safe;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
- 
 .grid-item{
-    background: #f0f0f0; /* Light gray background */
-    border: 1px solid #ddd; /* Light gray border */
-    padding: 10px; /* Padding inside each item */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for better visibility */
-    text-align: center; /* Center the text */
- 
-    align-items: center;
-    justify-content: center;
-    height: 100%;
- 
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+.grid-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
 }

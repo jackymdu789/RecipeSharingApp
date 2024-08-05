@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const serves = document.getElementById("recipe-serves").value;
         const duration = document.getElementById("recipe-duration").value;
         const categoryId = document.getElementById("category").value;
+        const status = document.getElementById("status");  // private --or-- public
+        console.log
         const userId = sessionStorage.getItem("userId")
         console.log(userId)
         const recipeData = {

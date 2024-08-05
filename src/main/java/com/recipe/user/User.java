@@ -36,7 +36,7 @@ public class User {
 		this.userPassword = userPassword;
 		this.recipes = recipes;
 	}
-	
+
 	public User( String userName, String userEmail, String userPassword) {
 		super();
 		this.userName = userName;

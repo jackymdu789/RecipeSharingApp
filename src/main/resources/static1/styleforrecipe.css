@@ -4,7 +4,7 @@ body {
 }
 
 #recipe-form {
-    width: 470px;
+    width: 300px;
     margin: 0 auto;
 }
 
@@ -56,15 +56,11 @@ button {
 }
 
 button[type="submit"] {
-    background-color: #45a049;
+    background-color: #2196F3;
     color: white;
     border: none;
 }
 
 button[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-.upload-container{
-    display: flex;
+    background-color: #0b7dda;
 }

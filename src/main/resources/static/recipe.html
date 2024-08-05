@@ -52,6 +52,23 @@
             <option value="5">Lunch</option>
             <option value="6">Dinner</option>
         </select>
+        <br>
+        <div>
+            <label for="Recipe-Status">Recipe Status    :  </label>
+            <select id="status" >
+                <option value="1">PUBLIC</option>
+                <option value="2">PRIVATE</option>
+            </select>
+        </div>
+        <br>
+
+        <div class="upload-container">
+            <p>Upload an Image or Video of your recipe <small>(Not mandatory)</small></p>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" id="fileInput" name="file" accept="image/*,video/*">
+            </form>
+        </div>
+
         <button type="submit">Create</button>
     </form>
         

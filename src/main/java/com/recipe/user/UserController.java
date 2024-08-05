@@ -63,32 +63,32 @@ public class UserController {
 		Optional<User> updatedUser = Optional.empty();
 		return updatedUser.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
 	}
-	
-	
+
+
 	@PostMapping("/validateuser")
-    public ResponseEntity<String> validateUser(@RequestBody Integer userId, @RequestBody String userPassword) {
-        Optional<User> optionalUser = service.getUserById(userId);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            if (user.getUserPassword().equals(userPassword)) {
-                return ResponseEntity.ok("User successfully LogedIn ");
-            } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid password");
-            }
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found,... Please Register");
-        }
-    }
+	public ResponseEntity<String> validateUser(@RequestBody Integer userId, @RequestBody String userPassword) {
+		Optional<User> optionalUser = service.getUserById(userId);
+		if (optionalUser.isPresent()) {
+			User user = optionalUser.get();
+			if (user.getUserPassword().equals(userPassword)) {
+				return ResponseEntity.ok("User successfully LogedIn ");
+			} else {
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid password");
+			}
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found,... Please Register");
+		}
+	}
 	@PostMapping("/newuser")
 	public ResponseEntity<String> addNewUser(@RequestBody String userName, @RequestBody String userEmail, @RequestBody String userPassword) {
-		 Optional<User> existingUser = service.findByUserEmail(userEmail);
+		Optional<User> existingUser = service.findByUserEmail(userEmail);
 
-	        if (existingUser.isPresent()) {
-	            return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists with the provided email. Please login.");
-	        } else {
-	            
-	            service.addNewUser(userName, userEmail, userPassword);
-	            return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully.");
-	        }
-	    }	
+		if (existingUser.isPresent()) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists with the provided email. Please login.");
+		} else {
+
+			service.addNewUser(userName, userEmail, userPassword);
+			return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully.");
+		}
+	}	
 }

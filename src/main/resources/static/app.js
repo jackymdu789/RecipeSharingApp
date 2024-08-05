@@ -1,66 +1,92 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.getElementById('login');
-    const createRecipeForm = document.getElementById('create-recipe');
-    const recipeList = document.getElementById('recipe-list');
-    let userId;
-    loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const userName = document.getElementById('username').value;
-        const userEmail = document.getElementById('email').value;
-        const userPassword = document.getElementById('password').value;
+document.addEventListener('DOMContentLoaded', () => {
+    const registerForm = document.getElementById('registerForm');
+    const loginForm = document.getElementById('loginForm');
+
+    // Handle registration form submission
+    registerForm.querySelector('form').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent the default form submission
+
+        const username = document.getElementById('registerUsername').value;
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Basic validation for passwords
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
 
         try {
-            const response = await fetch('http://localhost:8090/user', {
+            const response = await fetch('http://localhost:8090/newuser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ userName, userEmail, userPassword })
+                body: JSON.stringify({
+                    username: username,
+                    email: email,
+                    password: password
+                })
             });
-    
-            // Check if the response is ok
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }else{
-                sessionStorage.setItem("userId", await response.text())
+
+            const result = await response.text();
+            
+            if (response.ok) {
+                alert(result); // Display success message
+                // Redirect to another page on successful login
+                window.location.href = 'home.html'; // Change this to your desired URL
+            } else {
+                alert(result); // Display error message
             }
-            window.location.href = "recipe.html";
         } catch (error) {
             console.error('Error:', error);
+            alert('An error occurred. Please try again.');
         }
     });
-    
-    
 
-//     createRecipeForm.addEventListener('submit', (e) => {
-//         e.preventDefault();
-//         const name = document.getElementById('recipe-name').value;
-//         const description = document.getElementById('recipe-description').value;
+    // Handle login form submission
+    loginForm.querySelector('form').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent the default form submission
 
-//         fetch('http://localhost:8080/api/recipes/create', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({ name, description, user: { id: userId } })
-//         })
-//         .then(response => response.json())
-//         .then(data => {
-//             fetchRecipes();
-//         })
-//         .catch(error => console.error('Error:', error));
-//     });
-//     function fetchRecipes() {
-//         fetch('http://localhost:8080/api/recipes')
-//             .then(response => response.json())
-//             .then(data => {
-//                 recipeList.innerHTML = '';
-//                 data.forEach(recipe => {
-//                     const li = document.createElement('li');
-//                     li.textContent = recipe.name;
-//                     recipeList.appendChild(li);
-//                 });
-//             })
-//             .catch(error => console.error('Error:', error));
-//     }
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+
+        try {
+            const response = await fetch('http://localhost:8090/validateuser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            });
+
+            const result = await response.text();
+            
+            if (response.ok) {
+                alert(result); // Display success message or handle redirection
+                window.location.href = 'home.html';
+            } else {
+                alert(result); // Display error message
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        }
+    });
+
+    // Show registration form
+    window.showRegisterForm = function() {
+        registerForm.classList.add('active');
+        loginForm.classList.remove('active');
+    };
+
+    // Show login form
+    window.showLoginForm = function() {
+        registerForm.classList.remove('active');
+        loginForm.classList.add('active');
+    };
 });

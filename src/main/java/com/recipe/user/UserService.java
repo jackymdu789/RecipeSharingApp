@@ -18,9 +18,9 @@ public class UserService {
 	Optional<User> getUserById(Integer user_id) {
 		return repo.findById(user_id);
 	}
-//	public void updateUser(Integer id, User userdetails) {
-//		repo.save(userdetails);
-//	}
+	//	public void updateUser(Integer id, User userdetails) {
+	//		repo.save(userdetails);
+	//	}
 
 	public Optional<User> updateUser(Integer id, User user) {
 		if (repo.existsById(id)) {
@@ -45,7 +45,7 @@ public class UserService {
 	public User addNewUser(String userName,String userEmail, String userPassword) {
 		User newUser = new User(userName, userEmail, userPassword);
 		return repo.save(newUser);
-		
+
 	}
 
 }
