@@ -1,36 +1,36 @@
-
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const createRecipeForm = document.getElementById("create-recipe");
     createRecipeForm.addEventListener("submit", async (event) => {
         event.preventDefault();
-
         const recipeName = document.getElementById("recipe-name").value;
-       const ingredents = document.getElementById("ingredients").value.split(',');
+        const ingredients = document.getElementById("ingredients").value.split(',');
         const steps = document.getElementById("recipe-steps").value;
         const serves = document.getElementById("recipe-serves").value;
         const duration = document.getElementById("recipe-duration").value;
         const categoryId = document.getElementById("category").value;
+        const dietaryId = document.getElementById("dietary").value;
+        const imageUrl = document.getElementById("image-url").value; 
         const userId = sessionStorage.getItem("userId")
         console.log(userId)
         const recipeData = {
             recipeName: recipeName,
-            ingredents,
+            ingredients,
             steps: steps,
             serves: serves,
             duration: duration,
             category: {
                 categoryId: categoryId
-            }
-            // recipe_fk: sessionStorage.getItem("userId")
+            },
+            dietary:{
+                dietaryId: dietaryId
+            },
+            imageUrl: imageUrl 
+
         };
-
-
         console.log(recipeData);
         try {
-            const response = await fetch(`http://localhost:8090/user/${userId}/addRecipe`, {
-                method: "PUT",
+            const response = await fetch(`http://localhost:8090/recipe/${userId}/createRecipe`, {
+                method: "post",
                 headers: {
                     "Content-Type": "application/json"
                 },

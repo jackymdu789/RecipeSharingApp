@@ -64,3 +64,10 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #0b7dda;
 }
+#recipes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}

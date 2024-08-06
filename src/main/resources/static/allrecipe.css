@@ -19,7 +19,7 @@ h1 {
 }
 
 .recipe-grid {
-    display: grid;
+    display: grid; 
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
@@ -47,4 +47,14 @@ h1 {
 .recipe-card p {
     color: #000000;
     margin: 10px 0;
+}
+
+
+.recipe-image {
+    width: 100%;
+    height: 35%;
+    max-height: 200px; /* Adjust the max-height as needed */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
