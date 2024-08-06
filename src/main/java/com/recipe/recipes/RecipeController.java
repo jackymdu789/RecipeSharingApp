@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.recipe.category.Category;
 import com.recipe.category.CategoryService;
+import com.recipe.dietary.Dietary;
+import com.recipe.dietary.DietaryService;
 
 @RestController
 @CrossOrigin("http://127.0.0.1:5500")
@@ -24,6 +26,8 @@ public class RecipeController {
 	RecipeService service;
 	@Autowired
 	CategoryService cservice;
+	@Autowired
+	DietaryService dservice;
 
 	@GetMapping("/recipe")
 	List<Recipe> getAllRecipe() {
@@ -50,22 +54,49 @@ public class RecipeController {
 		return service.getRecipesByCategory(categoryId);
 	}
 
-	@PostMapping("/createrecipe")
-	public ResponseEntity<Recipe> createRecipe(@RequestBody Recipe recipe) {
-		Optional<Category> categoryOpt = cservice.findCategoryById(recipe.getCategory().getCategoryId());
-		if (categoryOpt.isPresent()) {
-			recipe.setCategory(categoryOpt.get());
-		} else {
-			return ResponseEntity.badRequest().body(null);
-		}
-		Recipe createdRecipe = service.addRecipe(recipe);
-		return ResponseEntity.ok(createdRecipe);
+	@GetMapping("recipe/bydietary")
+	public List<Recipe> getRecipesByDietary(@RequestParam Integer dietaryId) {
+		return service.getRecipesByDietary(dietaryId);
 	}
 
 	@GetMapping("/recipe/search")
 	public List<Recipe> findRecipesByIngredient(@RequestParam("ingredients") String ingredients) {
-
 		return service.findRecipesByIngredient(ingredients);
+	}
+
+	@GetMapping("/recipe/byduration")
+	List<Recipe> getRecipesByDuration(@RequestParam("duration") Integer duration) {
+		return service.getRecipesByDuration(duration);
+	}
+
+	@GetMapping("/recipe/byserves")
+	List<Recipe> getRecipesByServes(@RequestParam("serves") Integer serves) {
+		return service.getRecipesByServes(serves);
+	}
+
+	@PostMapping("/recipe/{userId}/createRecipe")
+	public ResponseEntity<Recipe> createRecipe(@PathVariable Integer userId, @RequestBody Recipe recipe) {
+		System.out.println("Received recipe: " + recipe);
+
+		if (recipe.getCategory() == null || recipe.getCategory().getCategoryId() == null) {
+			return ResponseEntity.badRequest().body(null);
+		}
+		if (recipe.getDietary() == null || recipe.getDietary().getDietaryId() == null) {
+			return ResponseEntity.badRequest().body(null);
+		}
+
+		Optional<Category> categoryOpt = cservice.findCategoryById(recipe.getCategory().getCategoryId());
+		Optional<Dietary> dietaryOpt = dservice.getDietaryById(recipe.getDietary().getDietaryId());
+
+		if (!categoryOpt.isPresent() || !dietaryOpt.isPresent()) {
+			return ResponseEntity.badRequest().body(null);
+		}
+
+		recipe.setCategory(categoryOpt.get());
+		recipe.setDietary(dietaryOpt.get());
+
+		Recipe createdRecipe = service.addRecipe(recipe);
+		return ResponseEntity.ok(createdRecipe);
 	}
 
 }

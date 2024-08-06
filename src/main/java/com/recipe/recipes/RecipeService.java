@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class RecipeService {
@@ -28,12 +29,22 @@ public class RecipeService {
 		repo.deleteById(id);
 	}
 
+	List<Recipe> getRecipesByDuration(Integer duration) {
+		return repo.findByDuration(duration);
+	}
+
 	public List<Recipe> getRecipesByCategory(Integer categoryId) {
 		return repo.findByCategoryCategoryId(categoryId);
 	}
 
+	public List<Recipe> getRecipesByDietary(@RequestParam Integer dietaryId) {
+		return repo.findByDietaryDietaryId(dietaryId);
+	}
+
 	public List<Recipe> findRecipesByIngredient(String ingredients) {
-//        List<String> ingredientsList = Arrays.asList(ingredients.split(","));
 		return repo.searchRecipeByIngredients(ingredients);
+	}
+	public List<Recipe> getRecipesByServes(@RequestParam("serves") Integer serves) {
+		return repo.findByServes(serves);
 	}
 }

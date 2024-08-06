@@ -4,13 +4,14 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.recipe.category.Category;
+import com.recipe.dietary.Dietary;
 import com.recipe.user.User;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
@@ -30,13 +31,17 @@ public class Recipe {
 	@OneToOne
 //	@JoinColumn(name = "categoryId")
 	Category category;
+	@ManyToOne
+	Dietary dietary;
+	@Column(name = "image_url", length = 255)
+	String imageUrl;
+
 	public Recipe() {
 
 	}
 
-
 	public Recipe(Integer recipeId, String recipeName, List<String> ingredients, String steps, Integer serves,
-			Integer duration, User user, Category category) {
+			Integer duration, User user, Category category, Dietary dietary, String imageUrl) {
 		super();
 		this.recipeId = recipeId;
 		this.recipeName = recipeName;
@@ -46,6 +51,8 @@ public class Recipe {
 		this.duration = duration;
 		this.user = user;
 		this.category = category;
+		this.dietary = dietary;
+		this.imageUrl = imageUrl;
 	}
 
 	public Integer getRecipeId() {
@@ -103,6 +110,7 @@ public class Recipe {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public Category getCategory() {
 		return category;
 	}
@@ -111,13 +119,27 @@ public class Recipe {
 		this.category = category;
 	}
 
+	public Dietary getDietary() {
+		return dietary;
+	}
+
+	public void setDietary(Dietary dietary) {
+		this.dietary = dietary;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 
 	@Override
 	public String toString() {
-		return "Recipe [recipeId=" + recipeId + ", recipeName=" + recipeName + ", ingredients=" + ingredients + ", steps="
-				+ steps + ", serves=" + serves + ", duration=" + duration + ", user=" + user + ", category=" + category
-				+ "]";
+		return "Recipe [recipeId=" + recipeId + ", recipeName=" + recipeName + ", ingredients=" + ingredients
+				+ ", steps=" + steps + ", serves=" + serves + ", duration=" + duration + ", user=" + user
+				+ ", category=" + category + ", dietary=" + dietary + ", imageUrl=" + imageUrl + "]";
 	}
-	
 
 }
